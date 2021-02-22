@@ -1,10 +1,15 @@
 # TodoList-Angga
 
-[![Forks][forks-shield]][https://github.com/Erlangga15/TodoList-Angga/network/members]
-[![Stargazers][stars-shield]][https://github.com/Erlangga15/TodoList-Angga/stargazers]
-[![Issues][issues-shield]][https://github.com/Erlangga15/TodoList-Angga/issues]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/erlangga-hendrika-putra-utama-61294b1b6/]
-[![Instagram][instagram-shield]][https://www.instagram.com/anggahendrika/]
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](angga.hendrika@gmail.com)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/anggahendrika/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](ttps://www.linkedin.com/in/erlangga-hendrika-putra-utama-61294b1b6/)
+<br />
+<br />
+[![NodeJs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
+[![VueJs](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)]()
+[![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)]()
+[![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)]()
+[![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)]()
 
 
 <!-- PROJECT LOGO -->
@@ -58,9 +63,9 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
+<p align="justify">
 Projek ini merupakan projek pribadi saya untuk mengasah skill pemrograman NodeJs yang telah saya miliki. Nama projek ini adalah Todo List yaitu merupakan aplikasi untuk menuliskan pekerjaan yang akan kita lakukan didalam web, kita juga dapat mencentang pekerjaan yang telah dilakukan yang akan ditandai dengan garis melintang pada nama pekerjaan seperti yang terlihat pada gambar. Setiap perkerjaan yang didaftarkan pada aplikasi ini juga tersimpan pada database yang telah dikonfigurasi sebelumnya. 
-
+</p>
 ### Built With
 
 Projek ini dibuat dengan menggunakan berbagai macam tool sebagai berikut
