@@ -1,0 +1,30 @@
+{
+  "name": "todolist-angga",
+  "version": "1.0.0",
+  "description": "self project for learning",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "build": "webpack --mode production",
+    "dev": "webpack serve --open --mode development",
+    "lint": "eslint ."
+  },
+  "author": "Erlangga Hendrika",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
+    "nodemon": "^2.0.7",
+    "redux-thunk": "^2.3.0"
+  }
+}
