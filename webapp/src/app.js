@@ -1,9 +1,15 @@
 require('./app.css');
-const { store$, addAction, doneAction, undoneAction } = require('./store');
+const {
+  store$,
+  addAction,
+  doneAction,
+  undoneAction,
+  deleteAction,
+} = require('./store');
 
 const input = document.getElementById('todo');
 const form = document.getElementById('todo-form');
-const list = document.getElementById('todo-list');
+const list = document.getElementById('list');
 
 form.onsubmit = (event) => {
   event.preventDefault();
@@ -26,19 +32,45 @@ function render(state) {
   list.innerHTML = '';
   for (let i = 0; i < state.length; i++) {
     const todo = state[i];
-    const li = document.createElement('li');
-    li.textContent = todo.task;
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    const label = document.createElement('span');
+    const tdCheck = document.createElement('td');
+    const tdTrash = document.createElement('td');
+    const spanCheck = document.createElement('span');
+    const spanTrash = document.createElement('span');
+
+    label.innerHTML = todo.task;
+    tdCheck.className = 'checkmark';
+    tdTrash.className = 'trash trashDel';
+    spanTrash.className = 'far fa-trash-alt';
+
     if (todo.done) {
-      li.className = 'todo-done';
-      li.onclick = function () {
+      label.className = 'done';
+      spanCheck.className = 'far fa-check-circle checkDone';
+      spanCheck.onclick = function () {
         store$.dispatch(undoneAction(i));
       };
+      spanTrash.onclick = function () {
+        store$.dispatch(deleteAction(i));
+      };
     } else {
-      li.className = '';
-      li.onclick = function () {
+      label.className = '';
+      spanCheck.className = 'far fa-check-circle';
+      spanCheck.onclick = function () {
         store$.dispatch(doneAction(i));
       };
+      spanTrash.onclick = function () {
+        store$.dispatch(deleteAction(i));
+      };
     }
-    list.append(li);
+    tr.appendChild(td);
+    tr.appendChild(tdCheck);
+    tr.appendChild(tdTrash);
+    td.appendChild(label);
+    tdCheck.appendChild(spanCheck);
+    tdTrash.appendChild(spanTrash);
+
+    list.append(tr);
   }
 }
