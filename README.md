@@ -1,4 +1,5 @@
 # TodoList-Angga
+<span align="center">
 
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](angga.hendrika@gmail.com)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/anggahendrika/)
@@ -11,6 +12,7 @@
 [![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)]()
 [![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)]()
 
+</span>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -61,10 +63,13 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<span align="center">
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![image](https://user-images.githubusercontent.com/55235710/108838472-438b0e00-7606-11eb-9182-84195e214f5a.png)
+
+</span>
 <p align="justify">
-Projek ini merupakan projek pribadi saya untuk mengasah skill pemrograman NodeJs yang telah saya miliki. Nama projek ini adalah Todo List yaitu merupakan aplikasi untuk menuliskan pekerjaan yang akan kita lakukan didalam web, kita juga dapat mencentang pekerjaan yang telah dilakukan yang akan ditandai dengan garis melintang pada nama pekerjaan seperti yang terlihat pada gambar. Setiap perkerjaan yang didaftarkan pada aplikasi ini juga tersimpan pada database yang telah dikonfigurasi sebelumnya. 
+Projek ini merupakan projek pribadi saya untuk mengasah skill pemrograman NodeJs yang telah saya miliki. Nama projek ini adalah Todo List yaitu merupakan aplikasi untuk menuliskan pekerjaan yang akan kita lakukan didalam web, kita juga dapat mencentang pekerjaan yang telah dilakukan yang akan ditandai dengan garis melintang pada nama pekerjaan seperti yang terlihat pada gambar, serta kita juga dapat menghapus pekerjaan dari daftar list. Web aplikasi todo list ini juga menggunakan webservice dengan protokol http serta setiap perkerjaan yang didaftarkan pada aplikasi ini juga tersimpan pada database yang telah dikonfigurasi sebelumnya. 
 </p>
 ### Built With
 

@@ -42,12 +42,12 @@ function render(state) {
 
     label.innerHTML = todo.task;
     tdCheck.className = 'checkmark';
-    tdTrash.className = 'trash trashDel';
+    tdTrash.className = 'trash trash-del';
     spanTrash.className = 'far fa-trash-alt';
 
     if (todo.done) {
-      label.className = 'done';
-      spanCheck.className = 'far fa-check-circle checkDone';
+      label.className = 'todo-done';
+      spanCheck.className = 'far fa-check-circle check-done';
       spanCheck.onclick = function () {
         store$.dispatch(undoneAction(i));
       };

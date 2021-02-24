@@ -127,20 +127,20 @@ td {
   opacity: 1;
 }
 
-.checkDone {
+.check-done {
   color: green;
   opacity: 1;
 }
 
-.trashDel {
+.trash-del {
   color: red;
 }
 
-.done {
+.todo-done {
   opacity: 0.3;
   position: relative;
 }
-.done::after {
+.todo-done::after {
   border-bottom: 0.125em solid black;
   content: '';
   height: 0.125em;

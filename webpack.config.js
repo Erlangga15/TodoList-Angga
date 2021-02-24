@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: './webapp/src/main.js',
+    main: './web/src/main.js',
   },
   output: {
     path: path.resolve(__dirname, 'www'),
@@ -10,7 +10,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './webapp/www',
+    contentBase: './web/www',
     port: 7000,
   },
   module: {
