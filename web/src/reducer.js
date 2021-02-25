@@ -4,21 +4,26 @@ const initialState = [
 ];
 
 function add(state, action) {
+  console.log(state[0]);
   state.push({ task: action.payload, done: false });
   return state;
 }
 
 function done(state, action) {
-  state[action.payload].done = true;
+  const task = state.find((t) => t.task === action?.payload.task);
+  task.done = true;
   return state;
 }
 
 function undone(state, action) {
-  state[action.payload].done = false;
+  const task = state.find((t) => t.task === action?.payload.task);
+  task.done = false;
   return state;
 }
+
 function del(state, action) {
-  state.pop();
+  const task = state.findIndex((t) => t.task === action?.payload.task);
+  state.splice(task, 1);
   return state;
 }
 
