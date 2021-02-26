@@ -16,7 +16,7 @@ describe('Todo Webapp', () => {
     );
   });
 
-  test('Menambah task baru', () => {
+  test('Menambah tugas baru', () => {
     const action = {
       type: 'add',
       payload: 'Belajar',
@@ -25,7 +25,7 @@ describe('Todo Webapp', () => {
     expect(initialState).toHaveLength(3);
     expect(initialState[2].task).toBe('Belajar');
   });
-  test('Menandai task selesai', () => {
+  test('Menandai tugas selesai', () => {
     const action = {
       type: 'done',
       payload: {
@@ -36,7 +36,7 @@ describe('Todo Webapp', () => {
     done(initialState, action);
     expect(initialState[0].done).toBeTruthy();
   });
-  test('Menandai task belum selesai', () => {
+  test('Menandai tugas belum selesai', () => {
     const action = {
       type: 'done',
       payload: {
@@ -47,7 +47,7 @@ describe('Todo Webapp', () => {
     undone(initialState, action);
     expect(initialState[1].done).toBeFalsy();
   });
-  test('Menghapus task', () => {
+  test('Menghapus tugas', () => {
     const action = {
       type: 'done',
       payload: {

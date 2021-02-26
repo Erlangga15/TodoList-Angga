@@ -5,6 +5,7 @@ env:
   mocha: true
   browser: true
   jest: true
+  cypress: true
 extends:
   - eslint:recommended
   # - google

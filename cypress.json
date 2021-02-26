@@ -1,4 +1,8 @@
 {
-  "baseUrl": "http://localhost:5757/",
-  "integrationFolder": "web/src/test/"
+  "baseUrl": "http://localhost:7000/",
+  "integrationFolder": "web/src/e2e-test/",
+  "pluginsFile": false,
+  "supportFile": false,
+  "fixturesFolder": "web/src/e2e-test/fixtures",
+  "screenshotsFolder": "web/src/e2e-test/screenshots"
 }

@@ -13,7 +13,7 @@ new Vue({
   render(CreateElement) {
     const todoList = this.todos.map((todo) => {
       return CreateElement('tr', [
-        CreateElement('td', [
+        CreateElement('td', { class: 'task' }, [
           CreateElement(
             'span',
             {
