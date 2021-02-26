@@ -1,14 +1,10 @@
-const {
-  createAction,
-  createReducer,
-  configureStore,
-} = require('@reduxjs/toolkit');
-const { initialState, add, done, undone, del } = require('./reducer');
+import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
+import { initialState, add, done, undone, del } from './reducer';
 
-const addAction = createAction('add');
-const doneAction = createAction('done');
-const undoneAction = createAction('undone');
-const deleteAction = createAction('del');
+export const addAction = createAction('add');
+export const doneAction = createAction('done');
+export const undoneAction = createAction('undone');
+export const deleteAction = createAction('del');
 
 const todoReducer = createReducer(initialState, {
   [addAction]: add,
@@ -17,14 +13,6 @@ const todoReducer = createReducer(initialState, {
   [deleteAction]: del,
 });
 
-const store$ = configureStore({
+export const store$ = configureStore({
   reducer: todoReducer,
 });
-
-module.exports = {
-  store$,
-  addAction,
-  doneAction,
-  undoneAction,
-  deleteAction,
-};

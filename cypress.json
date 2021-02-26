@@ -1,0 +1,4 @@
+{
+  "baseUrl": "http://localhost:5757/",
+  "integrationFolder": "web/src/test/"
+}

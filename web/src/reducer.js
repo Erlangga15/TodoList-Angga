@@ -1,6 +1,6 @@
 const initialState = [
-  { task: 'main', done: false },
-  { task: 'makan', done: true },
+  { task: 'Main', done: false },
+  { task: 'Makan', done: true },
 ];
 
 function add(state, action) {
