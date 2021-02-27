@@ -19,20 +19,27 @@ paths:
         - 'todo'
       operationId: 'listTask'
       description: 'untuk menampilkan daftar tugas'
-      consumes:
-        - 'application/json'
       produces:
         - 'application/json'
         - 'text/plain'
       responses:
         '200':
-          description: 'daftar tugas'
+          description: 'daftar tugas tampil'
           schema:
             type: array
             items:
               $ref: '#/definitions/Task'
+          examples:
+            application/json:
+              [
+                { "id": 1, "task": "makan", "done": false },
+                { "id": 2, "task": "minum", "done": false },
+                { "id": 3, "task": "belajar", "done": false }
+              ]
         '500':
-          description: kesalahan server
+          description: 'kesalahan server'
+          examples:
+            text/plain: 'kesalahan server'
   /add:
     post:
       tags:
@@ -56,10 +63,116 @@ paths:
           description: 'memasukkan tugas baru'
           schema:
             $ref: '#/definitions/Task'
+          examples:
+            application/json: { "id": 1, "task": "makan", "done": false }
         '400':
           description: 'data tugas tidak valid'
+          examples:
+            text/plain: 'data tugas tidak valid'
         '500':
           description: 'kesalahan server'
+          examples:
+            text/plain: 'kesalahan server'
+  /done:
+    put:
+      tags:
+        - 'todo'
+      operationId: 'doneTask'
+      description: 'untuk menandakan tugas sudah selesai'
+      produces:
+        - 'application/json'
+        - 'text/plain'
+      parameters:
+        - in: query
+          name: id
+          type: integer
+          description: 'id tugas'
+          required: true
+      responses:
+        '200':
+          description: 'menandai tugas sebagai sudah selesai'
+          schema:
+            $ref: '#/definitions/Task'
+          examples:
+            application/json: { "id": 1, "task": "makan", "done": true }
+        '401':
+          description: 'parameter id tidak ditemukan'
+          examples:
+            text/plain: 'parameter id tidak ditemukan'
+        '404':
+          description: 'halaman todo list tidak ditemukan'
+          examples:
+            text/plain: 'halaman todo list tidak ditemukan'
+        '500':
+          description: 'kesalahan server'
+          examples:
+            text/plain: 'kesalahan server'
+  /undone:
+    put:
+      tags:
+        - 'todo'
+      operationId: 'undoneTask'
+      description: 'untuk membatalkan penyelesaian sebuah tugas'
+      produces:
+        - 'application/json'
+        - 'text/plain'
+      parameters:
+        - in: query
+          name: id
+          type: integer
+          description: 'id dari task'
+      responses:
+        '200':
+          description: 'tugas yang dibatalkan penyelesaiannya'
+          schema:
+            $ref: '#/definitions/Task'
+          examples:
+            application/json: { "id": 1, "task": "makan", "done": false }
+        '401':
+          description: 'parameter id tidak ditemukan'
+          examples:
+            text/plain: 'parameter id tidak ditemukan'
+        '404':
+          description: 'halaman todo list tidak ditemukan'
+          examples:
+            text/plain: 'halaman todo list tidak ditemukan'
+        '500':
+          description: 'kesalahan server'
+          examples:
+            text/plain: 'kesalahan server'
+  /remove:
+    post:
+      tags:
+        - 'todo'
+      operationId: 'removeTask'
+      description: 'untuk menghapus tugas'
+      produces:
+        - 'application/json'
+        - 'text/plain'
+      parameters:
+        - in: query
+          name: id
+          type: integer
+          description: 'id dari task'
+      responses:
+        '200':
+          description: 'pekerjaan yang barusan di hapus'
+          schema:
+            $ref: '#/definitions/Task'
+          examples:
+            application/json: { "id": 1, "task": "makan", "done": false }
+        '401':
+          description: 'parameter id tidak ditemukan'
+          examples:
+            text/plain: 'parameter id tidak ditemukan'
+        '404':
+          description: 'halaman todo list tidak ditemukan'
+          examples:
+            text/plain: 'halaman todo list tidak ditemukan'
+        '500':
+          description: 'kesalahan server'
+          examples:
+            text/plain: 'kesalahan server'
   
 
 definitions:
