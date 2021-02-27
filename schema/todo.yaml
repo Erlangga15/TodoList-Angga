@@ -1,0 +1,87 @@
+swagger: '2.0'
+info:
+  title: 'Todo Service'
+  description: 'API untuk mengatur aktifitas todo webapp'
+  version: '1.0.0'
+  license:
+    name: 'GPL-3.0'
+    url: 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+host: 'localhost'
+tags:
+  - name: 'todo'
+    description: 'endpoint untuk menjalankan todo webapp'
+schemes:
+  - 'http'
+paths:
+  /list:
+    get:
+      tags:
+        - 'todo'
+      operationId: 'listTask'
+      description: 'untuk menampilkan daftar tugas'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+        - 'text/plain'
+      responses:
+        '200':
+          description: 'daftar tugas'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Task'
+        '500':
+          description: kesalahan server
+  /add:
+    post:
+      tags:
+        - 'todo'
+      operationId: 'addTask'
+      description: 'untuk menambahkan tugas baru'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+        - 'text/plain'
+      parameters:
+        - in: body
+          name: body
+          description: 'informasi tugas'
+          required: true
+          schema:
+            $ref: '#/definitions/TaskData'
+      responses:
+        '200':
+          description: 'memasukkan tugas baru'
+          schema:
+            $ref: '#/definitions/Task'
+        '400':
+          description: 'data tugas tidak valid'
+        '500':
+          description: 'kesalahan server'
+  
+
+definitions:
+  Task:
+    type: object
+    properties:
+      id:
+        type: number
+        description: 'identifier pekerjaan'
+        example: 1
+      task:
+        type: string
+        description: 'detail pekerjaan / tugas'
+        example: makan
+      done:
+        type: boolean
+        description: 'true mendandakan pekerjaan sudah selesai'
+  TaskData:
+    type: object
+    properties:
+      task:
+        type: string
+        description: 'detail pekerjaan / tugas'
+        example: makan
+  

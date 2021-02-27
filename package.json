@@ -30,6 +30,7 @@
     "@reduxjs/toolkit": "^1.5.0",
     "nodemon": "^2.0.7",
     "redux-thunk": "^2.3.0",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "swagger-ui": "^3.42.0"
   }
 }
