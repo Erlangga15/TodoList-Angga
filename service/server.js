@@ -20,7 +20,7 @@ async function init() {
       port: 3306,
       username: 'root',
       password: 'password',
-      database: 'todolist',
+      database: 'todo',
     });
     console.log('database connected');
   } catch (err) {

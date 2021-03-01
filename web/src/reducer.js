@@ -3,34 +3,40 @@ const initialState = [
   { task: 'Makan', done: true },
 ];
 
-function add(state, action) {
-  console.log(state[0]);
-  state.push({ task: action.payload, done: false });
+const list = (state, action) => {
+  state = action.payload;
   return state;
-}
+};
 
-function done(state, action) {
-  const task = state.find((t) => t.task === action?.payload.task);
+const add = (state, action) => {
+  console.log(state[0]);
+  state.push({ id: action.payload.id, task: action.payload.task, done: false });
+  return state;
+};
+
+const done = (state, action) => {
+  const task = state.find((t) => t.id === action.payload.id);
   task.done = true;
   return state;
-}
+};
 
-function undone(state, action) {
-  const task = state.find((t) => t.task === action?.payload.task);
+const undone = (state, action) => {
+  const task = state.find((t) => t.id === action.payload.id);
   task.done = false;
   return state;
-}
+};
 
-function del(state, action) {
-  const task = state.findIndex((t) => t.task === action?.payload.task);
+const remove = (state, action) => {
+  const task = state.findIndex((t) => t.id === action.payload.id);
   state.splice(task, 1);
   return state;
-}
+};
 
 module.exports = {
   initialState,
+  list,
   add,
   done,
   undone,
-  del,
+  remove,
 };

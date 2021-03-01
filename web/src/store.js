@@ -1,18 +1,35 @@
-import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
-import { initialState, add, done, undone, del } from './reducer';
+const {
+  createAction,
+  createReducer,
+  configureStore,
+} = require('@reduxjs/toolkit');
+const { initialState, list, add, done, undone, remove } = require('./reducer');
+const thunkMiddleware = require('redux-thunk');
 
-export const addAction = createAction('add');
-export const doneAction = createAction('done');
-export const undoneAction = createAction('undone');
-export const deleteAction = createAction('del');
+const listAction = createAction('list');
+const addAction = createAction('add');
+const doneAction = createAction('done');
+const undoneAction = createAction('undone');
+const removeAction = createAction('del');
 
 const todoReducer = createReducer(initialState, {
+  [listAction]: list,
   [addAction]: add,
   [doneAction]: done,
   [undoneAction]: undone,
-  [deleteAction]: del,
+  [removeAction]: remove,
 });
 
-export const store$ = configureStore({
+const store$ = configureStore({
   reducer: todoReducer,
+  middleware: [thunkMiddleware.default],
 });
+
+module.exports = {
+  store$,
+  listAction,
+  addAction,
+  doneAction,
+  undoneAction,
+  removeAction,
+};

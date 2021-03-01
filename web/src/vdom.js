@@ -1,12 +1,13 @@
 import './app.css';
 import Vue from 'vue';
+import { store$ } from './store';
 import {
-  store$,
-  addAction,
-  doneAction,
-  undoneAction,
-  deleteAction,
-} from './store';
+  listTaskClient,
+  addTaskClient,
+  doneTaskClient,
+  undoneTaskClient,
+  removeTaskClient,
+} from './client-todo';
 
 new Vue({
   el: '#todo-list',
@@ -120,18 +121,18 @@ new Vue({
       if (!this.task?.length) {
         return;
       }
-      store$.dispatch(addAction(this.task));
+      store$.dispatch(addTaskClient(this.task));
       event.target.reset();
     },
     toogleDone(todo) {
       if (todo?.done) {
-        store$.dispatch(undoneAction(todo));
+        store$.dispatch(undoneTaskClient(todo?.id));
       } else {
-        store$.dispatch(doneAction(todo));
+        store$.dispatch(doneTaskClient(todo?.id));
       }
     },
     deleteTask(todo) {
-      store$.dispatch(deleteAction(todo));
+      store$.dispatch(removeTaskClient(todo?.id));
     },
   },
   mounted() {
@@ -139,5 +140,6 @@ new Vue({
     store$.subscribe(() => {
       this.todos = store$.getState();
     });
+    store$.dispatch(listTaskClient);
   },
 });
