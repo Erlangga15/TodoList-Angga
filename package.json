@@ -4,9 +4,9 @@
   "description": "self project for learning",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "svc": "nodemon service/server.js",
     "build": "webpack --mode production",
-    "dev": "webpack serve --open --mode development",
+    "web": "webpack serve --open --mode development",
     "lint": "eslint .",
     "test": "jest --coverage",
     "cypress": "cypress open"
@@ -24,16 +24,18 @@
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2",
     "jest": "^26.6.3",
-    "cypress": "^6.3.0"
+    "cypress": "^6.3.0",
+    "yaml-loader": "^0.6.0",
+    "json-loader": "^0.5.7"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "nodemon": "^2.0.7",
-    "redux-thunk": "^2.3.0",
     "vue": "^2.6.12",
     "swagger-ui": "^3.42.0",
     "rc": "^1.2.8",
     "mysql": "^2.18.1",
-    "typeorm": "^0.2.30"
+    "typeorm": "^0.2.30",
+    "redux-thunk": "^2.3.0"
   }
 }

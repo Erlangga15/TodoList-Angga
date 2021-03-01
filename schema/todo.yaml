@@ -10,8 +10,9 @@ host: 'localhost'
 tags:
   - name: 'todo'
     description: 'endpoint untuk menjalankan todo webapp'
-schemes:
-  - 'http'
+# schemes:
+#   - 'http'
+
 paths:
   /list:
     get:
