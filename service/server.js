@@ -1,5 +1,4 @@
 const { createServer } = require('http');
-const { connect } = require('./lib/orm');
 const url = require('url');
 const { stdout } = require('process');
 const {
@@ -9,14 +8,29 @@ const {
   undoneTask,
   removeTask,
 } = require('./todo.service');
-const { TodoSchema } = require('./todo.model');
 const { config } = require('./config');
 
-const run = (callback) => {
-  const server = createServer((req, res) => {
+let server;
+
+const cors = (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'OPTIONS, GET, POST, PUT, DELETE'
+  );
+  res.setHeader('Access-Control-Allow-Headers', '*');
+
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return true;
+  }
+};
+
+const run = () => {
+  server = createServer((req, res) => {
     let method = req.method;
-    let message = 'Data tidak ditemukan';
-    let statusCode = 200;
     const uri = url.parse(req.url, true);
 
     const aborted = cors(req, res);
@@ -73,32 +87,10 @@ const run = (callback) => {
     }
   });
 
-  server.on('close', () => {
-    if (callback) {
-      callback();
-    }
-  });
-
-  const PORT = config.server.port;
+  const PORT = config.server?.port;
   server.listen(PORT, () => {
     stdout.write(`server listening on port ${PORT}\n`);
   });
-};
-
-const cors = (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Request-Method', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'OPTIONS, GET, POST, PUT, DELETE'
-  );
-  res.setHeader('Access-Control-Allow-Headers', '*');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204);
-    res.end();
-    return;
-  }
 };
 
 const stop = () => {
