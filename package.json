@@ -4,9 +4,9 @@
   "description": "self project for learning",
   "main": "index.js",
   "scripts": {
-    "svc": "nodemon service/server.js",
-    "build": "webpack --mode production",
+    "svc": "nodemon service/main.js",
     "web": "webpack serve --open --mode development",
+    "build": "webpack --mode production",
     "lint": "eslint .",
     "test": "jest --coverage",
     "cypress": "cypress open"

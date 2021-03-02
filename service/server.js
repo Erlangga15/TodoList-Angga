@@ -10,26 +10,82 @@ const {
   removeTask,
 } = require('./todo.service');
 const { TodoSchema } = require('./todo.model');
+const { config } = require('./config');
 
-async function init() {
-  try {
-    console.log('connect to database');
-    await connect([TodoSchema], {
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'password',
-      database: 'todo',
-    });
-    console.log('database connected');
-  } catch (err) {
-    console.error('database connection failed');
-    return;
-  }
-}
+const run = (callback) => {
+  const server = createServer((req, res) => {
+    let method = req.method;
+    let message = 'Data tidak ditemukan';
+    let statusCode = 200;
+    const uri = url.parse(req.url, true);
 
-const server = createServer((req, res) => {
+    const aborted = cors(req, res);
+    if (aborted) {
+      return;
+    }
+    const respond = (statusCode, message) => {
+      res.statusCode = statusCode || 200;
+      res.write(message || 'Method tidak tersedia');
+      res.end();
+    };
+    try {
+      switch (uri.pathname) {
+        case '/list':
+          if (method === 'GET') {
+            listTask(req, res);
+          } else {
+            respond(404);
+          }
+          break;
+        case '/add':
+          if (method === 'POST') {
+            addTask(req, res);
+          } else {
+            respond(404);
+          }
+          break;
+        case '/done':
+          if (method === 'PUT') {
+            doneTask(req, res);
+          } else {
+            respond(404);
+          }
+          break;
+        case '/undone':
+          if (method === 'PUT') {
+            undoneTask(req, res);
+          } else {
+            respond(404);
+          }
+          break;
+        case '/remove':
+          if (method === 'DELETE') {
+            removeTask(req, res);
+          } else {
+            respond(404);
+          }
+          break;
+        default:
+          respond(404, 'Halaman tidak tersedia');
+      }
+    } catch (err) {
+      respond(500, 'Kesalahan server');
+    }
+  });
+
+  server.on('close', () => {
+    if (callback) {
+      callback();
+    }
+  });
+
+  const PORT = config.server.port;
+  server.listen(PORT, () => {
+    stdout.write(`server listening on port ${PORT}\n`);
+  });
+};
+
+const cors = (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Request-Method', '*');
   res.setHeader(
@@ -43,76 +99,16 @@ const server = createServer((req, res) => {
     res.end();
     return;
   }
+};
 
-  let method = req.method;
-  let message = 'Data tidak ditemukan';
-  let statusCode = 200;
-  const uri = url.parse(req.url, true);
-  const respond = () => {
-    res.statusCode = statusCode;
-    res.write(message);
-    res.end();
-  };
-  try {
-    switch (uri.pathname) {
-      case '/list':
-        if (method === 'GET') {
-          listTask(req, res);
-        } else {
-          statusCode = 404;
-          message = 'Method tidak tersedia';
-          respond();
-        }
-        break;
-      case '/add':
-        if (method === 'POST') {
-          addTask(req, res);
-        } else {
-          statusCode = 404;
-          message = 'Method tidak tersedia';
-          respond();
-        }
-        break;
-      case '/done':
-        if (method === 'PUT') {
-          doneTask(req, res);
-        } else {
-          statusCode = 404;
-          message = 'Method tidak tersedia';
-          respond();
-        }
-        break;
-      case '/undone':
-        if (method === 'PUT') {
-          undoneTask(req, res);
-        } else {
-          statusCode = 404;
-          message = 'Method tidak tersedia';
-          respond();
-        }
-        break;
-      case '/remove':
-        if (method === 'DELETE') {
-          removeTask(req, res);
-        } else {
-          statusCode = 404;
-          message = 'Method tidak tersedia';
-          respond();
-        }
-        break;
-      default:
-        statusCode = 404;
-        respond();
-    }
-  } catch (err) {
-    statusCode = 500;
-    message = 'Kesalahan server';
-    respond();
+const stop = () => {
+  if (server) {
+    server.close();
   }
-});
+};
 
-init();
-const PORT = 8000;
-server.listen(PORT, () => {
-  stdout.write(`server listening on port ${PORT}\n`);
-});
+module.exports = {
+  run,
+  cors,
+  stop,
+};

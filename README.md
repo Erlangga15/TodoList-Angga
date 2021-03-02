@@ -1,4 +1,5 @@
 # TodoList-Angga
+<!-- BADGE -->
 <span align="center">
 
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](angga.hendrika@gmail.com)
@@ -7,10 +8,14 @@
 <br />
 <br />
 [![NodeJs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
-[![VueJs](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)]()
+[![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=white)]()
 [![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)]()
-[![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)]()
+[![VueJs](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)]()
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white)]()
 [![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)]()
+[![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)]()
+[![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)]()
+[![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)]()
 
 </span>
 
@@ -21,7 +26,7 @@
     <img src="https://i.ibb.co/whJThXZ/desain-logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Erlangga Hendrika</h3>
+  <h3 align="center">Erlangga Hendrika Putra Utama</h3>
 
   <p align="center">
     Portfolio 
@@ -32,7 +37,10 @@
     <a href="https://github.com/Erlangga15/TodoList-Angga/issues">Report Bug</a>
     ·
     <a href="https://github.com/Erlangga15/TodoList-Angga/issues">Request Feature</a>
+    .
+    <a href="https://github.com/Erlangga15/TodoList-Angga/releases">View Release version</a>
   </p>
+  
 </p>
 
 
@@ -71,17 +79,25 @@
 <p align="justify">
 Projek ini merupakan projek pribadi saya untuk mengasah skill pemrograman NodeJs yang telah saya miliki. Nama projek ini adalah Todo List yaitu merupakan aplikasi untuk menuliskan pekerjaan yang akan kita lakukan didalam web, kita juga dapat mencentang pekerjaan yang telah dilakukan yang akan ditandai dengan garis melintang pada nama pekerjaan seperti yang terlihat pada gambar, serta kita juga dapat menghapus pekerjaan dari daftar list. Web aplikasi todo list ini juga menggunakan webservice dengan protokol http serta setiap perkerjaan yang didaftarkan pada aplikasi ini juga tersimpan pada database yang telah dikonfigurasi sebelumnya. 
 </p>
-### Built With
+<br>
 
-Projek ini dibuat dengan menggunakan berbagai macam tool sebagai berikut
-* [NodeJs](https://nodejs.dev/)
-* [Webpack](https://webpack.js.org/)
-* [Redux](https://redux.js.org/)
-* [VueJS](https://vuejs.org/)
-* [TypeORM](https://typeorm.io/#/)
-* [MYSQL](https://www.mysql.com/)
+<!-- FEATURE -->
+## Feature
+Projek ini dibuat dengan menggunakan berbagai macam tool sebagai berikut :
 
+1. Web aplikasi dikembangkan menggunakan [NodeJs](https://nodejs.dev/)
 
+1. Web module bundler JavaScript menggunakan [Webpack](https://webpack.js.org/)
+1. State management control menggunakan [Redux](https://redux.js.org/)
+1. Front end framework menggunakan virtual DOM [VueJS](https://vuejs.org/)
+1. Database menggunakan [MYSQL](https://www.mysql.com/)
+1. Metode ORM (Object Relational Mapping) menggunakan [TypeORM](https://typeorm.io/#/)
+1. Unit testing frontend dan backend menggunakan [JestJs](https://jestjs.io/)
+1. End to end / Integration testing menggunakan [Cypress](https://www.cypress.io/)
+1. Skema Service menggunakan [Swagger](https://swagger.io/)
+1. Dokumentasi menggunakan [JsDocs](https://jsdoc.app/)
+
+<br>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -90,7 +106,8 @@ Sebelum mencoba menjalankan projek ini, silahkan melakukan instalasi tool yang d
 
 ### Prerequisites
 
-Pastikan anda telah menginstall NPM dengan versi terbaru dengan command sebagai berikut
+Pastikan anda telah menginstall NodeJs dengan versi 12 keatas yang dapat diunduh pada halaman https://nodejs.org/en/
+dan NPM dengan versi terbaru dengan menjalankan command sebagai berikut
 * npm
   ```sh
   npm install npm@latest -g
@@ -106,18 +123,26 @@ Pastikan anda telah menginstall NPM dengan versi terbaru dengan command sebagai 
    ```sh
    npm install
    ```
-1. Build webpack
-   ```sh
-   npm run dev
-   ```
+
+<br>
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Berikut adalah contoh penggunaan Webapp Todo List ini:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1. Menjalankan Webpack
+   ```sh
+   npm run web
+   ```
 
+1. Menjalankan Web service
+   ```sh
+   npm run svc
+   ```
 
+_Untuk penjelasan serta contoh lebih lanjut silahkan kunjungi [Documentation](https://example.com)_
+
+<br>
 
 <!-- CONTACT -->
 ## Contact
