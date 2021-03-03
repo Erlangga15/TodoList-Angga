@@ -52,12 +52,13 @@ describe('Todo Service', () => {
       expect(response).toHaveLength(1);
       expect(response[0].task).toBe('Test');
     });
-    it('Seharusnya error ketika headers tidak sesuai', async () => {
+    it('Seharusnya error ketika server mati', async () => {
       nock('http://localhost:8000').get('/list').reply(500);
       const res = await fetch('http://localhost:8000/list', {
         method: 'GET',
         headers: { 'Content-type': 'application/json' },
       });
+      
       const response = await res.status;
       expect(response).toBe(500);
     });
@@ -119,7 +120,6 @@ describe('Todo Service', () => {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
-      console.log('res.status', res.status);
       const response = await res.status;
       expect(response).toBe(404);
     });
@@ -157,7 +157,6 @@ describe('Todo Service', () => {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
-      console.log('res.status', res.status);
       const response = await res.status;
       expect(response).toBe(404);
     });
@@ -195,7 +194,6 @@ describe('Todo Service', () => {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json' },
       });
-      console.log('res.status', res.status);
       const response = await res.status;
       expect(response).toBe(404);
     });
