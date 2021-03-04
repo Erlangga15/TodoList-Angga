@@ -1,0 +1,12 @@
+{
+  "plugins": ["plugins/markdown"],
+  "source": {
+    "include": ["./web/src/"],
+    "exclude": []
+  },
+  "opts": {
+    "destination": "./docs/webapp",
+    "recurse": true,
+    "readme": "web/src/README.md"
+  }
+}

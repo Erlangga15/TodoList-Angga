@@ -1,3 +1,5 @@
+/** @module store */
+
 const {
   createAction,
   createReducer,
@@ -6,6 +8,11 @@ const {
 const { initialState, list, add, done, undone, remove } = require('./reducer');
 const thunkMiddleware = require('redux-thunk');
 
+/**
+ * Add action
+ * @function addAction
+ * @returns {PayloadAction<Todo, 'add'>}
+ */
 const listAction = createAction('list');
 const addAction = createAction('add');
 const doneAction = createAction('done');

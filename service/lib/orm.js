@@ -4,7 +4,6 @@ const { EntitySchema } = require('typeorm');
 
 /**
  * Connect to database
- * @deprecated
  * @param {EntitySchema[]} entities model entitites schemas
  * @param {*} config additional [`typeorm`](https://typeorm.io) connection config
  *
