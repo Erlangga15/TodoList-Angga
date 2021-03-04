@@ -1,7 +1,4 @@
-const initialState = [
-  { task: 'Main', done: false },
-  { task: 'Makan', done: true },
-];
+const initialState = [];
 
 const list = (state, action) => {
   state = action.payload;
