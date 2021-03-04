@@ -3,6 +3,9 @@ const { TodoSchema } = require('./todo.model');
 const { config } = require('./config');
 const server = require('./server');
 
+/**
+ * Intiate database connection
+ */
 const init = async () => {
   try {
     console.log('connect to database');

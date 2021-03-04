@@ -9,7 +9,9 @@
     "build": "webpack --mode production",
     "lint": "eslint .",
     "test": "jest --coverage",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "docs:svc": "jsdoc -c service/docs.json",
+    "docs:web": "jsdoc -c web/src/docs.json"
   },
   "author": "Erlangga Hendrika",
   "license": "ISC",
@@ -28,7 +30,8 @@
     "yaml-loader": "^0.6.0",
     "json-loader": "^0.5.7",
     "node-fetch": "^2.6.1",
-    "nock": "^13.0.7"
+    "nock": "^13.0.7",
+    "jsdoc": "^3.6.6"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",

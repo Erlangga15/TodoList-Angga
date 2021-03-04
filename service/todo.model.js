@@ -1,6 +1,17 @@
+/** @module todoSchema */
+
 const { EntitySchema } = require('typeorm');
 
+/**
+ * Todo model
+ */
 class Todo {
+   /**
+   * Create new instance of todo model
+   * @param {string} id id of a todo
+   * @param {string} task task description
+   * @param {boolean} done true when task are done
+   */
   constructor(id, task, done) {
     this.id = id;
     this.task = task;
@@ -8,6 +19,9 @@ class Todo {
   }
 }
 
+/**
+ * Entity schema of todo model
+ */
 const TodoSchema = new EntitySchema({
   name: 'Todo',
   target: Todo,
