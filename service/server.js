@@ -9,7 +9,9 @@ const {
   removeTask,
 } = require('./todo.service');
 const { config } = require('./config');
+const { createNodeLogger } = require('./lib/logger');
 
+const logger = createNodeLogger();
 let server;
 
 /**
@@ -45,7 +47,7 @@ const run = () => {
     }
     const respond = (statusCode, message) => {
       res.statusCode = statusCode || 200;
-      res.write(message || 'Method tidak tersedia');
+      res.write(message || 'Method not available');
       res.end();
     };
     try {
@@ -55,6 +57,7 @@ const run = () => {
             listTask(req, res);
           } else {
             respond(404);
+            logger.error('Page not available');
           }
           break;
         case '/add':
@@ -62,6 +65,7 @@ const run = () => {
             addTask(req, res);
           } else {
             respond(404);
+            logger.error('Page not available');
           }
           break;
         case '/done':
@@ -69,6 +73,7 @@ const run = () => {
             doneTask(req, res);
           } else {
             respond(404);
+            logger.error('Page not available');
           }
           break;
         case '/undone':
@@ -76,6 +81,7 @@ const run = () => {
             undoneTask(req, res);
           } else {
             respond(404);
+            logger.error('Page not available');
           }
           break;
         case '/remove':
@@ -83,13 +89,16 @@ const run = () => {
             removeTask(req, res);
           } else {
             respond(404);
+            logger.error('Page not available');
           }
           break;
         default:
-          respond(404, 'Halaman tidak tersedia');
+          respond(404, 'Page not available');
+          logger.error('Page not available');
       }
     } catch (err) {
-      respond(500, 'Kesalahan server');
+      respond(500, 'Internal Server Error');
+      logger.error('Internal Server Error');
     }
   });
 

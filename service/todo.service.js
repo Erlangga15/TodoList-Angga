@@ -11,6 +11,9 @@ const {
   ERROR_TODO_NOT_FOUND,
 } = require('./todo');
 const { ClientRequest, IncomingMessage, ServerResponse } = require('http');
+const { createNodeLogger } = require('./lib/logger');
+
+const logger = createNodeLogger();
 
 /**
  * Service to get list of todos
@@ -24,6 +27,7 @@ const listTask = async (req, res) => {
     res.write(JSON.stringify(todos));
     res.end();
   } catch (err) {
+    logger.error('Internal Server Error: listTask');
     res.statusCode = 500;
     res.write(JSON.stringify(err.message || err));
     res.end();
@@ -44,6 +48,7 @@ const addTask = async (req, res) => {
   req.on('end', async () => {
     const body = JSON.parse(data);
     if (!body.task) {
+      logger.error('Task is null: addTask');
       res.statusCode = 400;
       res.write(ERROR_ADD_DATA_INVALID);
       res.end();
@@ -56,6 +61,7 @@ const addTask = async (req, res) => {
       res.write(JSON.stringify(todo));
       res.end();
     } catch (err) {
+      logger.error('Internal Server Error: addTask');
       res.statusCode = 500;
       res.write(JSON.stringify(err.message || err));
       res.end();
@@ -73,8 +79,9 @@ const doneTask = async (req, res) => {
   const uri = url.parse(req.url, true);
   const id = uri.query['id'];
   if (!id) {
+    logger.error('id parameter not found: doneTask');
     res.statusCode = 401;
-    res.write('parameter id tidak ditemukan');
+    res.write('id parameter not found');
     res.end();
     return;
   }
@@ -86,11 +93,13 @@ const doneTask = async (req, res) => {
     res.end();
   } catch (err) {
     if (err === ERROR_TODO_NOT_FOUND) {
+      logger.error('Task not found: doneTask');
       res.statusCode = 404;
       res.write(err);
       res.end();
       return;
     }
+    logger.error('Internal Server Error: doneTask');
     res.statusCode = 500;
     console.log(err);
     res.write(JSON.stringify(err.message || err));
@@ -108,8 +117,9 @@ const undoneTask = async (req, res) => {
   const uri = url.parse(req.url, true);
   const id = uri.query['id'];
   if (!id) {
+    logger.error('id parameter not found: undoneTask');
     res.statusCode = 401;
-    res.write('parameter id tidak ditemukan');
+    res.write('id parameter not found');
     res.end();
     return;
   }
@@ -121,11 +131,13 @@ const undoneTask = async (req, res) => {
     res.end();
   } catch (err) {
     if (err === ERROR_TODO_NOT_FOUND) {
+      logger.error('Task not found: undoneTask');
       res.statusCode = 404;
       res.write(err);
       res.end();
       return;
     }
+    logger.error('Internal Server Error: undoneTask');
     res.statusCode = 500;
     res.write(JSON.stringify(err.message || err));
     res.end();
@@ -142,8 +154,9 @@ const removeTask = async (req, res) => {
   const uri = url.parse(req.url, true);
   const id = uri.query['id'];
   if (!id) {
+    logger.error('id parameter not found: removeTask');
     res.statusCode = 401;
-    res.write('parameter id tidak ditemukan');
+    res.write('id parameter not found');
     res.end();
     return;
   }
@@ -155,11 +168,13 @@ const removeTask = async (req, res) => {
     res.end();
   } catch (err) {
     if (err === ERROR_TODO_NOT_FOUND) {
+      logger.error('Task not found: removeTask');
       res.statusCode = 404;
       res.write(err);
       res.end();
       return;
     }
+    logger.error('Internal Server Error: removeTask');
     res.statusCode = 500;
     res.write(JSON.stringify(err.message || err));
     res.end();

@@ -2,13 +2,16 @@ const orm = require('./lib/orm');
 const { TodoSchema } = require('./todo.model');
 const { config } = require('./config');
 const server = require('./server');
+const { createNodeLogger } = require('./lib/logger');
+
+const logger = createNodeLogger();
 
 /**
  * Intiate database connection
  */
 const init = async () => {
   try {
-    console.log('connect to database');
+    logger.info('connect to database')
     await orm.connect([TodoSchema], {
       type: config.database?.type,
       host: config.database?.host,
@@ -17,9 +20,9 @@ const init = async () => {
       password: config.database?.password,
       database: config.database?.database,
     });
-    console.log('database connected');
+    logger.info('database connected');
   } catch (err) {
-    console.error('database connection failed');
+    logger.error('database connection failed');
     return;
   }
 };

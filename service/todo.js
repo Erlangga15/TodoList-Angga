@@ -3,9 +3,9 @@
 const { getConnection } = require('typeorm');
 const { Todo } = require('./todo.model');
 
-const ERROR_ADD_DATA_INVALID = 'data tugas tidak valid';
-const ERROR_ID_INVALID = 'id tugas tidak valid';
-const ERROR_TODO_NOT_FOUND = 'tugas tidak ditemukan';
+const ERROR_ADD_DATA_INVALID = 'Task is null';
+const ERROR_ID_INVALID = 'id parameter not found';
+const ERROR_TODO_NOT_FOUND = 'Task not found';
 
 /**
  * Get list of todo

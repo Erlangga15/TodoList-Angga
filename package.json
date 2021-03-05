@@ -41,6 +41,7 @@
     "rc": "^1.2.8",
     "mysql": "^2.18.1",
     "typeorm": "^0.2.30",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "winston": "^3.3.3"
   }
 }
