@@ -1,9 +1,19 @@
-const { createLogger, format, transports } = require('winston');
+/** @module logger */
+const { createLogger, format, transports, Logger } = require('winston');
 
+/**
+ * Formatting output logger
+ * @returns {string} format log
+ */
 const myFormat = format.printf(({timestamp, level, message}) => {
   return `${timestamp} ${level}: ${message}`;
 })
 
+/**
+ * Configuration logger
+ * @param {string} level additional [`logging levels`](https://github.com/winstonjs/winston#logging) in winston
+ * @returns {logger} node logger
+ */
 const createNodeLogger = (level) => {
   const logger = createLogger({
     level: level || 'info',

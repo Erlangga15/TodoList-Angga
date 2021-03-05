@@ -10,8 +10,10 @@ const {
 } = require('./todo.service');
 const { config } = require('./config');
 const { createNodeLogger } = require('./lib/logger');
+const { createTracer } = require('./lib/tracer')
 
 const logger = createNodeLogger();
+const tracer = createTracer('todolist-service');
 let server;
 
 /**
@@ -54,7 +56,7 @@ const run = () => {
       switch (uri.pathname) {
         case '/list':
           if (method === 'GET') {
-            listTask(req, res);
+            listTask(req, res, tracer);
           } else {
             respond(404);
             logger.error('Page not available');
@@ -62,7 +64,7 @@ const run = () => {
           break;
         case '/add':
           if (method === 'POST') {
-            addTask(req, res);
+            addTask(req, res, tracer);
           } else {
             respond(404);
             logger.error('Page not available');
@@ -70,7 +72,7 @@ const run = () => {
           break;
         case '/done':
           if (method === 'PUT') {
-            doneTask(req, res);
+            doneTask(req, res, tracer);
           } else {
             respond(404);
             logger.error('Page not available');
@@ -78,7 +80,7 @@ const run = () => {
           break;
         case '/undone':
           if (method === 'PUT') {
-            undoneTask(req, res);
+            undoneTask(req, res, tracer);
           } else {
             respond(404);
             logger.error('Page not available');
@@ -86,7 +88,7 @@ const run = () => {
           break;
         case '/remove':
           if (method === 'DELETE') {
-            removeTask(req, res);
+            removeTask(req, res, tracer);
           } else {
             respond(404);
             logger.error('Page not available');

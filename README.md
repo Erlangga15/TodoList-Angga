@@ -38,7 +38,7 @@
     ·
     <a href="https://github.com/Erlangga15/TodoList-Angga/issues">Request Feature</a>
     .
-    <a href="https://github.com/Erlangga15/TodoList-Angga/releases">View Release version</a>
+    <a href="https://github.com/Erlangga15/TodoList-Angga/releases">View Release Version</a>
   </p>
   
 </p>
