@@ -4,6 +4,7 @@ import { store$ } from './store';
 import { listTaskClient } from './client-todo';
 import { ListComponent } from './components/list-component';
 import { InputComponent } from './components/input-component';
+import './api/sentry';
 
 new Vue({
   el: '#todo-list',

@@ -1,1 +1,0 @@
-export const TODO_SERVICE_BASEURL = 'http://localhost:8000';

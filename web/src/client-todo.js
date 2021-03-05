@@ -1,4 +1,6 @@
 /** @module clientTodo */
+const { captureException } = require ('@sentry/vue');
+require('./api/sentry')
 
 const {
   listTaskApi,
@@ -24,6 +26,7 @@ const listTaskClient = async (dispatch) => {
     const listTask = await listTaskApi();
     dispatch(listAction(listTask));
   } catch (err) {
+    captureException(new Error('Failed get list of task'));
     console.log(err);
   }
 };
@@ -37,6 +40,7 @@ const addTaskClient = (task) => async (dispatch) => {
     const taskData = await addTaskApi(task);
     dispatch(addAction(taskData));
   } catch (err) {
+    captureException(new Error('Failed add task'));
     console.log(err);
   }
 };
@@ -50,6 +54,7 @@ const doneTaskClient = (id) => async (dispatch) => {
       const taskDataDone = await doneTaskApi(id);
       dispatch(doneAction(taskDataDone));
     } catch (err) {
+      captureException(new Error('Failed set task to done'));
       console.log(err);
     }
   };
