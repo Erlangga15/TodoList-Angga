@@ -1,7 +1,7 @@
 /** @module todoService */
 
 const { client } = require('./client');
-const { TODO_SERVICE_BASEURL } = require('../schema/config');
+const { TODO_SERVICE_BASEURL } = require('../config');
 
 /**
  * Get list of task
