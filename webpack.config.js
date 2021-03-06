@@ -6,7 +6,7 @@ module.exports = {
     schema: './web/src/schema/main.js',
   },
   output: {
-    path: path.resolve(__dirname, 'www'),
+    path: path.resolve(__dirname, './web/www'),
     filename: '[name].js',
   },
   devtool: 'inline-source-map',

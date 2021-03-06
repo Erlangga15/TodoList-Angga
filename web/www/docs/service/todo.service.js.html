@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: todo.service.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: todo.service.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module todoService */
+
+const url = require('url');
+const {
+  list,
+  add,
+  done,
+  undone,
+  remove,
+  ERROR_ADD_DATA_INVALID,
+  ERROR_TODO_NOT_FOUND,
+} = require('./todo');
+const { ClientRequest, IncomingMessage, ServerResponse } = require('http');
+
+/**
+ * Service to get list of todos
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+const listTask = async (req, res) => {
+  try {
+    const todos = await list();
+    res.setHeader('content-type', 'application/json');
+    res.write(JSON.stringify(todos));
+    res.end();
+  } catch (err) {
+    res.statusCode = 500;
+    res.write(JSON.stringify(err.message || err));
+    res.end();
+    return;
+  }
+};
+
+/**
+ * Service to add a new todo
+ * @param {ClientRequest} req
+ * @param {ServerResponse} res
+ */
+const addTask = async (req, res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data += chunk;
+  });
+  req.on('end', async () => {
+    const body = JSON.parse(data);
+    if (!body.task) {
+      res.statusCode = 400;
+      res.write(ERROR_ADD_DATA_INVALID);
+      res.end();
+      return;
+    }
+    try {
+      const todo = await add(body);
+      res.setHeader('content-type', 'application/json');
+      res.statusCode = 200;
+      res.write(JSON.stringify(todo));
+      res.end();
+    } catch (err) {
+      res.statusCode = 500;
+      res.write(JSON.stringify(err.message || err));
+      res.end();
+      return;
+    }
+  });
+};
+
+/**
+ * service to set a todo to done by it's id
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+const doneTask = async (req, res) => {
+  const uri = url.parse(req.url, true);
+  const id = uri.query['id'];
+  if (!id) {
+    res.statusCode = 401;
+    res.write('parameter id tidak ditemukan');
+    res.end();
+    return;
+  }
+  try {
+    const todo = await done(parseInt(id, 10));
+    res.setHeader('content-type', 'application/json');
+    res.statusCode = 200;
+    res.write(JSON.stringify(todo));
+    res.end();
+  } catch (err) {
+    if (err === ERROR_TODO_NOT_FOUND) {
+      res.statusCode = 404;
+      res.write(err);
+      res.end();
+      return;
+    }
+    res.statusCode = 500;
+    console.log(err);
+    res.write(JSON.stringify(err.message || err));
+    res.end();
+    return;
+  }
+};
+
+/**
+ * Service to set a todo to undone by it's id
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+const undoneTask = async (req, res) => {
+  const uri = url.parse(req.url, true);
+  const id = uri.query['id'];
+  if (!id) {
+    res.statusCode = 401;
+    res.write('parameter id tidak ditemukan');
+    res.end();
+    return;
+  }
+  try {
+    const todo = await undone(parseInt(id, 10));
+    res.setHeader('content-type', 'application/json');
+    res.statusCode = 200;
+    res.write(JSON.stringify(todo));
+    res.end();
+  } catch (err) {
+    if (err === ERROR_TODO_NOT_FOUND) {
+      res.statusCode = 404;
+      res.write(err);
+      res.end();
+      return;
+    }
+    res.statusCode = 500;
+    res.write(JSON.stringify(err.message || err));
+    res.end();
+    return;
+  }
+};
+
+/**
+ * Service to remove a todo by it's id
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+const removeTask = async (req, res) => {
+  const uri = url.parse(req.url, true);
+  const id = uri.query['id'];
+  if (!id) {
+    res.statusCode = 401;
+    res.write('parameter id tidak ditemukan');
+    res.end();
+    return;
+  }
+  try {
+    const todo = await remove(parseInt(id, 10));
+    res.setHeader('content-type', 'application/json');
+    res.statusCode = 200;
+    res.write(JSON.stringify(todo));
+    res.end();
+  } catch (err) {
+    if (err === ERROR_TODO_NOT_FOUND) {
+      res.statusCode = 404;
+      res.write(err);
+      res.end();
+      return;
+    }
+    res.statusCode = 500;
+    res.write(JSON.stringify(err.message || err));
+    res.end();
+    return;
+  }
+};
+
+module.exports = {
+  listTask,
+  addTask,
+  doneTask,
+  undoneTask,
+  removeTask,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-orm.html">orm</a></li><li><a href="module-todo.html">todo</a></li><li><a href="module-todoSchema.html">todoSchema</a></li><li><a href="module-todoService.html">todoService</a></li></ul><h3>Classes</h3><ul><li><a href="module-todoSchema-Todo.html">Todo</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cors">cors</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#run">run</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Mar 04 2021 14:47:29 GMT+0700 (Indochina Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

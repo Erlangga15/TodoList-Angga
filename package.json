@@ -11,7 +11,8 @@
     "test": "jest --coverage",
     "cypress": "cypress open",
     "docs:svc": "jsdoc -c service/docs.json",
-    "docs:web": "jsdoc -c web/src/docs.json"
+    "docs:web": "jsdoc -c web/src/docs.json",
+    "deploy": "vercel --prod"
   },
   "author": "Erlangga Hendrika",
   "license": "ISC",
@@ -31,7 +32,8 @@
     "json-loader": "^0.5.7",
     "node-fetch": "^2.6.1",
     "nock": "^13.0.7",
-    "jsdoc": "^3.6.6"
+    "jsdoc": "^3.6.6",
+    "vercel": "^21.2.3"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
