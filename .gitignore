@@ -3,5 +3,3 @@ cypress
 package-lock.json
 note.txt
 .vercel
-web/www/*.js
-web/www/*.txtgit remote update
