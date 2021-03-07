@@ -2,12 +2,12 @@ const rc = require('rc');
 
 const defaultConfig = {
   database: {
-    type: 'mysql',
-    host: 'localhost',
+    type: 'postgres',
+    host: 'tai.db.elephantsql.com',
     port: 3306,
-    username: 'root',
-    password: 'password',
-    database: 'todo',
+    username: 'pxuldfkr',
+    password: 'cTpBmg0ICIB-5sqnX9ofRV9t7YwOyZPl',
+    database: 'pxuldfkr',
   },
   server: {
     port: 8000,

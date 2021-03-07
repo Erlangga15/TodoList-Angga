@@ -104,7 +104,7 @@ const run = () => {
     }
   });
 
-  const PORT = config.server?.port;
+  const PORT = process.env.PORT || config.server?.port;
   server.listen(PORT, () => {
     stdout.write(`server listening on port ${PORT}\n`);
   });
