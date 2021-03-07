@@ -1,1 +1,5 @@
 node_modules
+docs
+web/src/e2e-test-unused
+web/src/unit-test-unused
+web/www
