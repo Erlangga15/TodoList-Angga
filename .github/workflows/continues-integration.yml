@@ -29,14 +29,9 @@ jobs:
           - 5432:5432
 
     runs-on: ubuntu-latest
-    env:
-      ## add secret on settings-secret-add new secret e.g name=POSTGRES_PASSWORD value=mypassword
-      todo_database__password: ${{ secrets.POSTGRES_PASSWORD }}
-      todo_database__database: ${{ secrets.POSTGRES_DB }}
-      todo_server__port: 8000
     defaults:
       run:
-        working-directory: ./materi
+        working-directory: ./
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 12
@@ -55,6 +50,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - run: npm i
-      - run: npm lint
-      - run: npm test
+      - name: Run Install Dependencies
+        run: npm i
+      - name: Run Test Linter
+        run: npm run lint
+      - name: Run Integration Test
+        run: npm test
