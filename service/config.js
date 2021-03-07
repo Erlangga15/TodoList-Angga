@@ -4,7 +4,7 @@ const defaultConfig = {
   database: {
     type: 'postgres',
     host: 'tai.db.elephantsql.com',
-    port: 3306,
+    port: 5432,
     username: 'pxuldfkr',
     password: 'cTpBmg0ICIB-5sqnX9ofRV9t7YwOyZPl',
     database: 'pxuldfkr',

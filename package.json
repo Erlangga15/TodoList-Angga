@@ -48,6 +48,7 @@
     "winston": "^3.3.3",
     "jaeger-client": "^3.18.1",
     "@sentry/tracing": "^6.1.0",
-    "@sentry/vue": "^6.1.0"
+    "@sentry/vue": "^6.1.0",
+    "pg": "^8.5.1"
   }
 }
