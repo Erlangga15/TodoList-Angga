@@ -4,3 +4,10 @@
 2021-03-05T09:58:25.306Z error: Task not found: removeTask
 2021-03-05T09:58:39.057Z error: id parameter not found: undoneTask
 2021-03-05T09:59:31.008Z error: id parameter not found: doneTask
+2021-03-07T07:06:25.792Z error: Task is null: addTask
+2021-03-07T07:06:26.086Z error: Task not found: doneTask
+2021-03-07T07:06:26.221Z error: id parameter not found: doneTask
+2021-03-07T07:06:26.614Z error: Task not found: undoneTask
+2021-03-07T07:06:26.677Z error: id parameter not found: undoneTask
+2021-03-07T07:06:27.033Z error: Task not found: removeTask
+2021-03-07T07:06:27.092Z error: id parameter not found: removeTask

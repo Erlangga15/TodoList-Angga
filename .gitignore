@@ -3,3 +3,4 @@ cypress
 package-lock.json
 note.txt
 .vercel
+.todorc
