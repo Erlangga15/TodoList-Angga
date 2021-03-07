@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 const nock = require('nock');
 
 const getList = async () => {
-  const res = await fetch('https://todolist-webapp-angga.herokuapp.com/list', {
+  const res = await fetch('http://localhost:8000/list', {
     method: 'GET',
     headers: { 'Content-type': 'application/json' },
   });
@@ -26,7 +26,7 @@ describe('Todo Service', () => {
   beforeEach(async () => {
     nock.cleanAll();
     await truncate();
-    await fetch('https://todolist-webapp-angga.herokuapp.com/add', {
+    await fetch('http://localhost:8000/add', {
       method: 'POST',
       body: JSON.stringify({
         task: 'Test',
@@ -44,7 +44,7 @@ describe('Todo Service', () => {
 
   describe('List', () => {
     it('Seharusnya dapat menampilkan daftar tugas', async () => {
-      const res = await fetch('https://todolist-webapp-angga.herokuapp.com/list', {
+      const res = await fetch('http://localhost:8000/list', {
         method: 'GET',
         headers: { 'Content-type': 'application/json' },
       });
@@ -53,12 +53,12 @@ describe('Todo Service', () => {
       expect(response[0].task).toBe('Test');
     });
     it('Seharusnya error ketika server mati', async () => {
-      nock('https://todolist-webapp-angga.herokuapp.com').get('/list').reply(500);
-      const res = await fetch('https://todolist-webapp-angga.herokuapp.com/list', {
+      nock('http://localhost:8000').get('/list').reply(500);
+      const res = await fetch('http://localhost:8000/list', {
         method: 'GET',
         headers: { 'Content-type': 'application/json' },
       });
-      
+
       const response = await res.status;
       expect(response).toBe(500);
     });
@@ -66,7 +66,7 @@ describe('Todo Service', () => {
 
   describe('Add', () => {
     it('Seharusnya dapat menambah tugas', async () => {
-      const res = await fetch('https://todolist-webapp-angga.herokuapp.com/add', {
+      const res = await fetch('http://localhost:8000/add', {
         method: 'POST',
         body: JSON.stringify({
           task: 'Test 2',
@@ -80,7 +80,7 @@ describe('Todo Service', () => {
       expect(response2).toHaveLength(2);
     });
     it('Seharusnya error ketika body tidak sesuai', async () => {
-      const res = await fetch('https://todolist-webapp-angga.herokuapp.com/add', {
+      const res = await fetch('http://localhost:8000/add', {
         method: 'POST',
         body: JSON.stringify({
           done: false,
@@ -91,8 +91,8 @@ describe('Todo Service', () => {
       expect(response).toBe(400);
     });
     it('Seharusnya error ketika server mati', async () => {
-      nock('https://todolist-webapp-angga.herokuapp.com').post('/add').reply(500);
-      const res = await fetch('https://todolist-webapp-angga.herokuapp.com/add', {
+      nock('http://localhost:8000').post('/add').reply(500);
+      const res = await fetch('http://localhost:8000/add', {
         method: 'POST',
         body: JSON.stringify({
           task: 'Test',
@@ -108,7 +108,7 @@ describe('Todo Service', () => {
   describe('Done', () => {
     it('Seharusnya dapat menandai tugas selesai', async () => {
       const list = await getList();
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/done?id=${list[0].id}`, {
+      const res = await fetch(`http://localhost:8000/done?id=${list[0].id}`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -116,7 +116,7 @@ describe('Todo Service', () => {
       expect(response.done).toBeTruthy();
     });
     it('Seharusnya error ketika tugas dengan id tertentu tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/done?id=3`, {
+      const res = await fetch(`http://localhost:8000/done?id=3`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -124,7 +124,7 @@ describe('Todo Service', () => {
       expect(response).toBe(404);
     });
     it('Seharusnya error ketika id tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/done`, {
+      const res = await fetch(`http://localhost:8000/done`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -132,8 +132,8 @@ describe('Todo Service', () => {
       expect(response).toBe(401);
     });
     it('Seharusnya error ketika server mati', async () => {
-      nock('https://todolist-webapp-angga.herokuapp.com').put('/done?id=1').reply(500);
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/done?id=1`, {
+      nock('http://localhost:8000').put('/done?id=1').reply(500);
+      const res = await fetch(`http://localhost:8000/done?id=1`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -145,7 +145,7 @@ describe('Todo Service', () => {
   describe('Undone', () => {
     it('Seharusnya dapat batal menandai tugas selesai', async () => {
       const list = await getList();
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/undone?id=${list[0].id}`, {
+      const res = await fetch(`http://localhost:8000/undone?id=${list[0].id}`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -153,7 +153,7 @@ describe('Todo Service', () => {
       expect(response.done).toBeFalsy();
     });
     it('Seharusnya error ketika tugas dengan id tertentu tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/undone?id=3`, {
+      const res = await fetch(`http://localhost:8000/undone?id=3`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -161,7 +161,7 @@ describe('Todo Service', () => {
       expect(response).toBe(404);
     });
     it('Seharusnya error ketika id tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/undone`, {
+      const res = await fetch(`http://localhost:8000/undone`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -169,8 +169,8 @@ describe('Todo Service', () => {
       expect(response).toBe(401);
     });
     it('Seharusnya error ketika server mati', async () => {
-      nock('https://todolist-webapp-angga.herokuapp.com').put('/undone?id=1').reply(500);
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/undone?id=1`, {
+      nock('http://localhost:8000').put('/undone?id=1').reply(500);
+      const res = await fetch(`http://localhost:8000/undone?id=1`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
       });
@@ -182,7 +182,7 @@ describe('Todo Service', () => {
   describe('Remove', () => {
     it('Seharusnya dapat menghapus tugas', async () => {
       const list = await getList();
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/remove?id=${list[0].id}`, {
+      const res = await fetch(`http://localhost:8000/remove?id=${list[0].id}`, {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json' },
       });
@@ -190,7 +190,7 @@ describe('Todo Service', () => {
       expect(response.done).toBeFalsy();
     });
     it('Seharusnya error ketika tugas dengan id tertentu tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/remove?id=3`, {
+      const res = await fetch(`http://localhost:8000/remove?id=3`, {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json' },
       });
@@ -198,7 +198,7 @@ describe('Todo Service', () => {
       expect(response).toBe(404);
     });
     it('Seharusnya error ketika id tidak ditemukan', async () => {
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/remove`, {
+      const res = await fetch(`http://localhost:8000/remove`, {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json' },
       });
@@ -206,8 +206,8 @@ describe('Todo Service', () => {
       expect(response).toBe(401);
     });
     it('Seharusnya error ketika server mati', async () => {
-      nock('https://todolist-webapp-angga.herokuapp.com').delete('/remove?id=1').reply(500);
-      const res = await fetch(`https://todolist-webapp-angga.herokuapp.com/remove?id=1`, {
+      nock('http://localhost:8000').delete('/remove?id=1').reply(500);
+      const res = await fetch(`http://localhost:8000/remove?id=1`, {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json' },
       });
