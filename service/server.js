@@ -10,7 +10,7 @@ const {
 } = require('./todo.service');
 const { config } = require('./config');
 const { createNodeLogger } = require('./lib/logger');
-const { createTracer } = require('./lib/tracer')
+const { createTracer } = require('./lib/tracer');
 
 const logger = createNodeLogger();
 const tracer = createTracer('todolist-service');
@@ -104,7 +104,7 @@ const run = () => {
     }
   });
 
-  const PORT = process.env.PORT || config.server?.port;
+  const PORT = process.env.PORT || config.server.port;
   server.listen(PORT, () => {
     stdout.write(`server listening on port ${PORT}\n`);
   });
