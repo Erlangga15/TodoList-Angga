@@ -11,7 +11,7 @@ const logger = createNodeLogger();
  */
 const init = async () => {
   try {
-    logger.info('connect to database')
+    logger.info('connect to database');
     await orm.connect([TodoSchema], {
       type: config.database?.type,
       host: config.database?.host,

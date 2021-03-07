@@ -1,6 +1,5 @@
 /** @module orm */
 const { createConnection } = require('typeorm');
-const { EntitySchema } = require('typeorm');
 
 /**
  * Connect to database

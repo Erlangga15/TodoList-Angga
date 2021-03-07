@@ -1,13 +1,13 @@
 /** @module logger */
-const { createLogger, format, transports, Logger } = require('winston');
+const { createLogger, format, transports } = require('winston');
 
 /**
  * Formatting output logger
  * @returns {string} format log
  */
-const myFormat = format.printf(({timestamp, level, message}) => {
+const myFormat = format.printf(({ timestamp, level, message }) => {
   return `${timestamp} ${level}: ${message}`;
-})
+});
 
 /**
  * Configuration logger
@@ -30,8 +30,8 @@ const createNodeLogger = (level) => {
     ],
   });
   return logger;
-}
+};
 
 module.exports = {
-  createNodeLogger
-}
+  createNodeLogger,
+};

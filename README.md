@@ -15,6 +15,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)]()
 [![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)]()
 [![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)]()
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)]()
 [![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)]()
 
 </span>
@@ -140,7 +141,40 @@ Berikut adalah contoh penggunaan Webapp Todo List ini:
    npm run svc
    ```
 
-_Untuk penjelasan serta contoh lebih lanjut silahkan kunjungi [Documentation](https://example.com)_
+1. Menjalankan integration test service (backend)
+   ```sh
+   npm run test
+   ```
+
+1. Menjalankan automated integration test webapp
+   ```sh
+   npm run cypress
+   ```
+1. Run Deployment to Vercel
+   ```sh
+   vercel login
+   vercel
+   npm run deploy
+   ```
+
+Heroku CLI
+
+1. Login Heroku
+   ```sh
+   heroku login
+   ```
+1. Run Commiting file change
+   ```sh
+   git add .  
+   git commit -m "Commit change"
+   ```
+1. Deploy to Heroku using git
+   ```sh
+   git push heroku main
+   ```
+
+
+_Untuk penjelasan serta contoh lebih lanjut silahkan kunjungi [Documentation FrontEnd](https://todo-webapp-ten.vercel.app/docs/webapp/index.html) - [Documentation BackEnd](https://todo-webapp-ten.vercel.app/docs/service/index.html)
 
 <br>
 

@@ -9,7 +9,7 @@
     "web": "webpack serve --open --mode development",
     "build": "webpack --mode production",
     "lint": "eslint .",
-    "test": "jest --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "cypress": "cypress open",
     "docs:svc": "jsdoc -c service/docs.json",
     "docs:web": "jsdoc -c web/src/docs.json",

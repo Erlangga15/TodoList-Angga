@@ -1,6 +1,6 @@
 /** @module clientTodo */
-const { captureException } = require ('@sentry/vue');
-require('./api/sentry')
+const { captureException } = require('@sentry/vue');
+require('./api/sentry');
 
 const {
   listTaskApi,
@@ -50,14 +50,14 @@ const addTaskClient = (task) => async (dispatch) => {
  * @param {*} dispatch done action
  */
 const doneTaskClient = (id) => async (dispatch) => {
-    try {
-      const taskDataDone = await doneTaskApi(id);
-      dispatch(doneAction(taskDataDone));
-    } catch (err) {
-      captureException(new Error('Failed set task to done'));
-      console.log(err);
-    }
-  };
+  try {
+    const taskDataDone = await doneTaskApi(id);
+    dispatch(doneAction(taskDataDone));
+  } catch (err) {
+    captureException(new Error('Failed set task to done'));
+    console.log(err);
+  }
+};
 
 /**
  * Dispatch set task to undone

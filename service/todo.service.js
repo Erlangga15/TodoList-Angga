@@ -10,9 +10,7 @@ const {
   ERROR_ADD_DATA_INVALID,
   ERROR_TODO_NOT_FOUND,
 } = require('./todo');
-const { ClientRequest, IncomingMessage, ServerResponse } = require('http');
 const { createNodeLogger } = require('./lib/logger');
-const { createTracer } = require('./lib/tracer')
 
 const logger = createNodeLogger();
 

@@ -9,7 +9,7 @@ const { initTracer } = require('jaeger-client');
 const createTracer = (serviceName) => {
   const config = {
     serviceName,
-    sampler: {  
+    sampler: {
       type: 'const',
       param: 1,
     },
@@ -28,8 +28,8 @@ const createTracer = (serviceName) => {
     },
   };
   return initTracer(config, options);
-}
+};
 
 module.exports = {
-  createTracer
+  createTracer,
 };

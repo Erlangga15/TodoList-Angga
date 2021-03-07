@@ -97,7 +97,10 @@ describe('Todo Webapp', () => {
       cy.visit('/');
       cy.wait('@getList');
       cy.get('.task').children().eq(0).should('not.have.class', 'todo-done');
-      cy.get('.checkmark').children().eq(0).should('not.have.class', 'check-done');
+      cy.get('.checkmark')
+        .children()
+        .eq(0)
+        .should('not.have.class', 'check-done');
       cy.get('.checkmark').children().eq(0).click();
       cy.get('.task').children().eq(0).should('have.class', 'todo-done');
     });
@@ -109,9 +112,15 @@ describe('Todo Webapp', () => {
       cy.visit('/');
       cy.wait('@getList');
       cy.get('.task').children().eq(0).should('not.have.class', 'todo-done');
-      cy.get('.checkmark').children().eq(0).should('not.have.class', 'check-done');
+      cy.get('.checkmark')
+        .children()
+        .eq(0)
+        .should('not.have.class', 'check-done');
       cy.get('.checkmark').children().eq(0).click();
-      cy.get('.checkmark').children().eq(0).should('not.have.class', 'check-done');
+      cy.get('.checkmark')
+        .children()
+        .eq(0)
+        .should('not.have.class', 'check-done');
       cy.get('.task').children().eq(0).should('not.have.class', 'todo-done');
     });
   });

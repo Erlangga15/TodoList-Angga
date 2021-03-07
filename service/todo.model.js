@@ -6,7 +6,7 @@ const { EntitySchema } = require('typeorm');
  * Todo model
  */
 class Todo {
-   /**
+  /**
    * Create new instance of todo model
    * @param {string} id id of a todo
    * @param {string} task task description
